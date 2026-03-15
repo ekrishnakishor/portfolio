@@ -1,0 +1,350 @@
+.aboutContainer {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background-color: var(--bg-primary);
+  overflow: hidden;
+}
+
+/* --- MAIN CONTENT STACKING --- */
+.mainContent {
+  flex: 1;
+  display: flex;
+  flex-direction: column; /* Stacks the pills above the grid */
+  align-items: center;
+  padding: 0 3rem;
+  margin-bottom: 3rem;
+}
+
+/* --- THE PILL SWITCHER --- */
+.pillContainer {
+  display: flex;
+  background-color: var(--bg-secondary);
+  padding: 0.35rem;
+  border-radius: 0.75rem;
+  margin-bottom: 2rem;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.2);
+}
+
+.pill {
+  padding: 0.75rem 2rem;
+  background-color: transparent;
+  color: var(--text-muted);
+  border: none;
+  border-radius: 0.5rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  letter-spacing: 0.05em;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.pill:hover {
+  color: #ffffff;
+}
+
+.activePill {
+  padding: 0.75rem 2rem;
+  background-color: var(--bg-card);
+  color: #ffffff;
+  border: none;
+  border-radius: 0.5rem;
+  font-size: 0.875rem;
+  font-weight: bold;
+  letter-spacing: 0.05em;
+  cursor: default;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* --- GRID AND ARROWS --- */
+.contentWrapper {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  max-width: 1200px;
+  gap: 2rem;
+}
+
+.navArrow {
+  padding: 1rem;
+  border-radius: 50%;
+  background-color: rgba(255, 255, 255, 0.05);
+  color: white;
+  transition: background-color 0.2s;
+  border: none;
+  cursor: pointer;
+}
+
+.navArrow:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+.hiddenArrow {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.gridContainer {
+  flex: 1;
+  height: 500px;
+  display: flex;
+  align-items: center;
+}
+.gridInner {
+  display: flex;
+  gap: 1.5rem;
+  width: 100%;
+  height: 100%;
+}
+
+/* --- LIGHT TRAVEL BORDER EFFECT --- */
+.projectCardWrapper {
+  flex: 1;
+  border-radius: 1rem;
+  position: relative;
+  padding: 2px; /* Thickness of the glowing border */
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.projectCardWrapper::before {
+  content: "";
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: conic-gradient(
+    from 0deg,
+    transparent 70%,
+    var(--accent-blue) 100%
+  );
+  animation: rotateLight 2.5s linear infinite;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  z-index: 0;
+}
+
+.projectCardWrapper:hover::before {
+  opacity: 1;
+}
+
+@keyframes rotateLight {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.projectCard {
+  flex: 1;
+  background-color: var(--bg-card);
+  border-radius: calc(1rem - 2px);
+  position: relative;
+  z-index: 1; /* Sits above the light gradient */
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.watermark {
+  position: absolute;
+  bottom: -1rem;
+  right: 0.5rem;
+  font-size: 6rem;
+  font-weight: 900;
+  color: rgba(255, 255, 255, 0.03);
+  font-style: italic;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.cardImageWrapper {
+  height: 12rem;
+  padding: 1rem;
+  z-index: 10;
+}
+.cardImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 0.75rem;
+}
+
+.cardContent {
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  z-index: 10;
+}
+.cardTitle {
+  font-size: 1.25rem;
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+  color: white;
+}
+.tagList {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  margin-bottom: 1.5rem;
+}
+.tag {
+  font-size: 0.7rem;
+  background-color: rgba(59, 130, 246, 0.2);
+  color: #93c5fd;
+  padding: 0.25rem 0.75rem;
+  border-radius: 999px;
+}
+
+.cardActions {
+  margin-top: auto;
+  display: flex;
+  gap: 0.75rem;
+}
+.actionBtnLive,
+.actionBtnDetails {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem;
+  border-radius: 0.5rem;
+  font-size: 0.875rem;
+  transition: background-color 0.2s;
+  border: none;
+  cursor: pointer;
+  color: white;
+}
+.actionBtnLive {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+.actionBtnLive:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+}
+.actionBtnDetails {
+  background-color: var(--accent-blue);
+}
+.actionBtnDetails:hover {
+  background-color: #2563eb;
+}
+
+/* --- CAREER TIMELINE CARDS --- */
+.careerCard {
+  flex: 1;
+  background-color: transparent;
+  border-left: 2px solid var(--accent-blue);
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  position: relative;
+}
+.careerCard::before {
+  content: "";
+  position: absolute;
+  left: -7px;
+  top: 50%;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background-color: var(--accent-blue);
+}
+.careerYear {
+  color: var(--accent-blue);
+  font-weight: bold;
+  font-size: 0.875rem;
+  margin-bottom: 0.5rem;
+  letter-spacing: 0.1em;
+}
+.careerRole {
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-bottom: 0.25rem;
+  color: white;
+}
+.careerCompany {
+  font-size: 1rem;
+  color: var(--text-muted);
+  margin-bottom: 1rem;
+}
+.careerDesc {
+  font-size: 0.875rem;
+  line-height: 1.6;
+  color: #d1d5db;
+}
+
+/* --- PROJECT DETAILS MODAL --- */
+.modalOverlay {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.8);
+  backdrop-filter: blur(5px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 100;
+}
+.modalContent {
+  background-color: var(--bg-secondary);
+  padding: 2.5rem;
+  border-radius: 1rem;
+  border: 1px solid var(--border-light);
+  width: 100%;
+  max-width: 42rem;
+  position: relative;
+}
+.closeBtn {
+  position: absolute;
+  top: 1.5rem;
+  right: 1.5rem;
+  color: var(--text-muted);
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+.closeBtn:hover {
+  color: white;
+}
+.modalTitle {
+  font-size: 1.875rem;
+  font-weight: bold;
+  color: var(--accent-blue);
+  margin-bottom: 2rem;
+}
+.modalTitle span {
+  font-size: 1.25rem;
+  color: rgba(255, 255, 255, 0.3);
+  font-weight: 300;
+}
+.modalSections {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+.modalSection {
+  background-color: rgba(0, 0, 0, 0.2);
+  padding: 1.25rem;
+  border-radius: 0.75rem;
+  border: 1px solid var(--border-light);
+}
+.modalSection h4 {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-bottom: 0.5rem;
+  color: white;
+}
+.modalSection p {
+  font-size: 0.875rem;
+  color: #d1d5db;
+  line-height: 1.5;
+}
+.codeText {
+  font-family: monospace;
+  color: #93c5fd !important;
+}

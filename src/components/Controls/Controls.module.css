@@ -1,0 +1,97 @@
+.overlay {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(4px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 200;
+}
+
+/* --- TERMINAL STYLES --- */
+.terminalContainer, .editorContainer {
+  width: 100%;
+  max-width: 600px;
+  background-color: #0d1117;
+  border: 1px solid #30363d;
+  border-radius: 0.5rem;
+  overflow: hidden;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.7);
+  display: flex;
+  flex-direction: column;
+}
+
+.terminalHeader, .editorHeader {
+  background-color: #161b22;
+  padding: 0.5rem 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #30363d;
+}
+
+.terminalTitle, .editorTitle {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: monospace;
+  font-size: 0.75rem;
+  color: #8b949e;
+}
+
+.closeBtn {
+  color: #8b949e;
+  background: none;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+}
+.closeBtn:hover { color: #f85149; }
+
+.terminalBody {
+  height: 350px;
+  padding: 1rem;
+  overflow-y: auto;
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 0.875rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.cmdInput { color: #58a6ff; }
+.cmdOutput { color: #c9d1d9; margin-bottom: 0.5rem; white-space: pre-wrap; line-height: 1.5; }
+
+.inputRow { display: flex; align-items: center; gap: 0.5rem; margin-top: 0.5rem; }
+.prompt { color: #3fb950; font-weight: bold; }
+
+.terminalInput {
+  flex: 1;
+  background: transparent;
+  border: none;
+  color: #c9d1d9;
+  font-family: inherit;
+  font-size: inherit;
+  outline: none;
+}
+
+/* --- CSS EDITOR STYLES --- */
+.editorBody {
+  height: 350px;
+  display: flex;
+}
+
+.cssTextarea {
+  flex: 1;
+  background-color: #0d1117;
+  color: #d2a8ff;
+  border: none;
+  padding: 1rem;
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 0.875rem;
+  line-height: 1.5;
+  outline: none;
+  resize: none;
+}
