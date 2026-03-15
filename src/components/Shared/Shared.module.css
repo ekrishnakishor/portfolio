@@ -163,3 +163,78 @@
   text-transform: uppercase;
   color: var(--text-main);
 }
+
+/* --- TECH MARQUEE --- */
+.marqueeContainer {
+  position: absolute;
+  bottom: 3.5rem; /* Sits just above the footer */
+  left: 0;
+  width: 100%;
+  overflow: hidden;
+  /* background-color: rgba(0, 0, 0, 0.4);
+  border-top: 1px solid var(--border-light);
+  border-bottom: 1px solid var(--border-light); */
+  padding: 0.75rem 0;
+  z-index: 40;
+  backdrop-filter: blur(4px);
+}
+
+.marqueeTrack {
+  display: flex;
+  width: max-content;
+  animation: scrollMarquee 30s linear infinite;
+}
+
+/* Pause the animation if a recruiter hovers over it to read */
+.marqueeContainer:hover .marqueeTrack {
+  animation-play-state: paused;
+}
+
+.techItem {
+  font-family: monospace;
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  padding: 0 2rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  white-space: nowrap;
+}
+
+.techItem:hover {
+  color: var(--accent-blue);
+}
+
+.techDot {
+  color: var(--accent-blue);
+}
+
+@keyframes scrollMarquee {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-33.33%); } /* Scrolls exactly one-third to loop seamlessly */
+}
+
+/* --- FOOTER COMMIT STYLES --- */
+.commitWrapper {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: 'Courier New', Courier, monospace;
+}
+
+.commitIcon {
+  color: #3fb950; /* GitHub Green */
+}
+
+.commitLink {
+  color: var(--text-muted);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.commitLink:hover {
+  color: #58a6ff; /* GitHub Blue */
+  text-decoration: underline;
+}

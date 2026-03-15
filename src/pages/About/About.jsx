@@ -3,6 +3,8 @@ import { ChevronLeft, ChevronRight, ExternalLink, Info, X } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import Navbar from "../../components/Shared/Navbar";
 import Footer from "../../components/Shared/Footer";
+import XRayWrapper from "../../components/XRay/XRayWrapper"; // Added
+import XRayModal from "../../components/XRay/XRayModal"; // Added
 import sharedStyles from "../../components/Shared/Shared.module.css";
 import styles from "./About.module.css";
 
@@ -162,117 +164,128 @@ const About = () => {
 
   return (
     <div className={styles.aboutContainer}>
-      {/* Shared Navbar displaying Name */}
       <Navbar ip={ip}>
         <h1 className={sharedStyles.navName}>KRISHNAKISHOR ERUVAT</h1>
       </Navbar>
 
       <main className={styles.mainContent}>
-        {/* The Pill Switcher */}
-        <div className={styles.pillContainer}>
-          <button
-            onClick={() => switchTab("freelance")}
-            className={
-              activeTab === "freelance" ? styles.activePill : styles.pill
-            }
-          >
-            FREELANCE
-          </button>
-          <button
-            onClick={() => switchTab("contributions")}
-            className={
-              activeTab === "contributions" ? styles.activePill : styles.pill
-            }
-          >
-            CONTRIBUTIONS
-          </button>
-          <button
-            onClick={() => switchTab("career")}
-            className={activeTab === "career" ? styles.activePill : styles.pill}
-          >
-            CAREER
-          </button>
-        </div>
+        {/* X-RAY: PILL SWITCHER */}
+        <XRayWrapper
+          title="Dynamic Tab Navigation"
+          description="React state (activeTab) dictates which dataset to slice for the pagination grid. Conditionally applies active CSS modules for visual feedback."
+          snippet={`const currentData = activeTab === "career" ? careerData : projects[activeTab];`}
+        >
+          <div className={styles.pillContainer}>
+            <button
+              onClick={() => switchTab("freelance")}
+              className={
+                activeTab === "freelance" ? styles.activePill : styles.pill
+              }
+            >
+              FREELANCE
+            </button>
+            <button
+              onClick={() => switchTab("contributions")}
+              className={
+                activeTab === "contributions" ? styles.activePill : styles.pill
+              }
+            >
+              CONTRIBUTIONS
+            </button>
+            <button
+              onClick={() => switchTab("career")}
+              className={activeTab === "career" ? styles.activePill : styles.pill}
+            >
+              CAREER
+            </button>
+          </div>
+        </XRayWrapper>
 
-        {/* Content Grid & Arrows */}
-        <div className={styles.contentWrapper}>
-          <button
-            onClick={handlePrev}
-            className={`${styles.navArrow} ${totalPages <= 1 ? styles.hiddenArrow : ""}`}
-          >
-            <ChevronLeft size={32} />
-          </button>
+        {/* X-RAY: CONTENT GRID & PAGINATION */}
+        <XRayWrapper
+          title="Paginated Grid & AnimatePresence"
+          description="Framer Motion's AnimatePresence handles smooth enter/exit transitions when tab state or page index changes. Slice method manages the 3-item horizontal pagination."
+          snippet={`<AnimatePresence mode="wait">\n  <motion.div key={activeTab + pageIndex} ...>\n</AnimatePresence>`}
+        >
+          <div className={styles.contentWrapper}>
+            <button
+              onClick={handlePrev}
+              className={`${styles.navArrow} ${totalPages <= 1 ? styles.hiddenArrow : ""}`}
+            >
+              <ChevronLeft size={32} />
+            </button>
 
-          <div className={styles.gridContainer}>
-            <AnimatePresence mode="wait">
-              <motion.div
-                key={activeTab + pageIndex}
-                initial={{ opacity: 0, x: 20 }}
-                animate={{ opacity: 1, x: 0 }}
-                exit={{ opacity: 0, x: -20 }}
-                transition={{ duration: 0.3 }}
-                className={styles.gridInner}
-              >
-                {activeTab === "career"
-                  ? visibleItems.map((item) => (
-                      <div key={item.id} className={styles.careerCard}>
-                        <div className={styles.careerYear}>{item.year}</div>
-                        <h3 className={styles.careerRole}>{item.role}</h3>
-                        <h4 className={styles.careerCompany}>{item.company}</h4>
-                        <p className={styles.careerDesc}>{item.desc}</p>
-                      </div>
-                    ))
-                  : visibleItems.map((item) => (
-                      <div key={item.id} className={styles.projectCardWrapper}>
-                        <div className={styles.projectCard}>
-                          <div className={styles.watermark}>{item.year}</div>
-                          <div className={styles.cardImageWrapper}>
-                            <img
-                              src={item.image}
-                              alt={item.title}
-                              className={styles.cardImage}
-                            />
-                          </div>
-                          <div className={styles.cardContent}>
-                            <h3 className={styles.cardTitle}>{item.title}</h3>
-                            <div className={styles.tagList}>
-                              {item.tags.map((tag) => (
-                                <span key={tag} className={styles.tag}>
-                                  {tag}
-                                </span>
-                              ))}
+            <div className={styles.gridContainer}>
+              <AnimatePresence mode="wait">
+                <motion.div
+                  key={activeTab + pageIndex}
+                  initial={{ opacity: 0, x: 20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  exit={{ opacity: 0, x: -20 }}
+                  transition={{ duration: 0.3 }}
+                  className={styles.gridInner}
+                >
+                  {activeTab === "career"
+                    ? visibleItems.map((item) => (
+                        <div key={item.id} className={styles.careerCard}>
+                          <div className={styles.careerYear}>{item.year}</div>
+                          <h3 className={styles.careerRole}>{item.role}</h3>
+                          <h4 className={styles.careerCompany}>{item.company}</h4>
+                          <p className={styles.careerDesc}>{item.desc}</p>
+                        </div>
+                      ))
+                    : visibleItems.map((item) => (
+                        <div key={item.id} className={styles.projectCardWrapper}>
+                          <div className={styles.projectCard}>
+                            <div className={styles.watermark}>{item.year}</div>
+                            <div className={styles.cardImageWrapper}>
+                              <img
+                                src={item.image}
+                                alt={item.title}
+                                className={styles.cardImage}
+                              />
                             </div>
-                            <div className={styles.cardActions}>
-                              <a
-                                href={item.live}
-                                target="_blank"
-                                rel="noreferrer"
-                                className={styles.actionBtnLive}
-                              >
-                                <ExternalLink size={16} /> Live
-                              </a>
-                              <button
-                                onClick={() => setSelectedProject(item)}
-                                className={styles.actionBtnDetails}
-                              >
-                                <Info size={16} /> Details
-                              </button>
+                            <div className={styles.cardContent}>
+                              <h3 className={styles.cardTitle}>{item.title}</h3>
+                              <div className={styles.tagList}>
+                                {item.tags.map((tag) => (
+                                  <span key={tag} className={styles.tag}>
+                                    {tag}
+                                  </span>
+                                ))}
+                              </div>
+                              <div className={styles.cardActions}>
+                                <a
+                                  href={item.live}
+                                  target="_blank"
+                                  rel="noreferrer"
+                                  className={styles.actionBtnLive}
+                                >
+                                  <ExternalLink size={16} /> Live
+                                </a>
+                                <button
+                                  onClick={() => setSelectedProject(item)}
+                                  className={styles.actionBtnDetails}
+                                >
+                                  <Info size={16} /> Details
+                                </button>
+                              </div>
                             </div>
                           </div>
                         </div>
-                      </div>
-                    ))}
-              </motion.div>
-            </AnimatePresence>
-          </div>
+                      ))}
+                </motion.div>
+              </AnimatePresence>
+            </div>
 
-          <button
-            onClick={handleNext}
-            className={`${styles.navArrow} ${totalPages <= 1 ? styles.hiddenArrow : ""}`}
-          >
-            <ChevronRight size={32} />
-          </button>
-        </div>
+            <button
+              onClick={handleNext}
+              className={`${styles.navArrow} ${totalPages <= 1 ? styles.hiddenArrow : ""}`}
+            >
+              <ChevronRight size={32} />
+            </button>
+          </div>
+        </XRayWrapper>
       </main>
 
       <Footer ip={ip} />
@@ -320,6 +333,10 @@ const About = () => {
           </motion.div>
         )}
       </AnimatePresence>
+
+      {/* X-Ray Inspector Modal */}
+      <XRayModal />
+
     </div>
   );
 };

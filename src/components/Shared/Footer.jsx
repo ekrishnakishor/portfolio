@@ -1,43 +1,64 @@
 import React, { useState, useEffect } from 'react';
+import { GitCommit } from 'lucide-react'; // Adding a cool commit icon
 import styles from './Shared.module.css';
 
 const Footer = ({ ip }) => {
-  const [visitors, setVisitors] = useState('...');
+  const [commitInfo, setCommitInfo] = useState({
+    message: 'Fetching latest commit...',
+    hash: '',
+    url: '#'
+  });
 
   useEffect(() => {
-    // We use a unique namespace for your portfolio
-    const namespace = 'krishnakishor-eruvat-portfolio';
-    const key = 'page-visits';
+    // GITHUB DETAILS
+    const GITHUB_USERNAME = 'ekrishnakishor';
+    const REPO_NAME = 'portfolio';
 
-    // Check if we've already counted this user in the current browser session
-    if (!sessionStorage.getItem('hasVisited')) {
-      // If not, trigger the '/up' endpoint to increment the counter
-      fetch(`https://api.counterapi.dev/v1/${namespace}/${key}/up`)
-        .then(res => res.json())
-        .then(data => {
-          setVisitors(data.count.toLocaleString()); // Adds the comma (e.g., 1,204)
-          sessionStorage.setItem('hasVisited', 'true');
-          sessionStorage.setItem('currentCount', data.count);
-        })
-        .catch(() => setVisitors('1,204')); // Fallback if API fails
-    } else {
-      // If they already visited, just pull the count from storage so we don't over-count
-      const savedCount = sessionStorage.getItem('currentCount');
-      if (savedCount) {
-        setVisitors(Number(savedCount).toLocaleString());
-      } else {
-        // Or just fetch the current count without incrementing it
-        fetch(`https://api.counterapi.dev/v1/${namespace}/${key}`)
-          .then(res => res.json())
-          .then(data => setVisitors(data.count.toLocaleString()))
-          .catch(() => setVisitors('1,204'));
-      }
+    // Check session storage first to avoid hitting GitHub API rate limits (60/hr)
+    const savedCommit = sessionStorage.getItem('latestCommit');
+    if (savedCommit) {
+      setCommitInfo(JSON.parse(savedCommit));
+      return;
     }
+
+    fetch(`https://api.github.com/repos/${GITHUB_USERNAME}/${REPO_NAME}/commits?per_page=1`)
+      .then(res => res.json())
+      .then(data => {
+        if (data && data.length > 0) {
+          const latest = data[0];
+          const info = {
+            message: latest.commit.message.split('\n')[0], // Grab just the first line of the commit message
+            hash: latest.sha.substring(0, 7), // Standard 7-character short hash
+            url: latest.html_url // The direct link to the commit on GitHub
+          };
+          setCommitInfo(info);
+          sessionStorage.setItem('latestCommit', JSON.stringify(info));
+        }
+      })
+      .catch(() => {
+        setCommitInfo({ message: 'Git integration offline', hash: '', url: '#' });
+      });
   }, []);
 
   return (
     <footer className={styles.footer}>
-      <div>Visitors: {visitors}</div>
+      <div className={styles.commitWrapper}>
+        <GitCommit size={14} className={styles.commitIcon} />
+        {commitInfo.hash ? (
+          <a 
+            href={commitInfo.url} 
+            target="_blank" 
+            rel="noreferrer" 
+            className={styles.commitLink}
+            title={commitInfo.message} // Shows full message on hover
+          >
+            {commitInfo.hash} — {commitInfo.message.length > 25 ? commitInfo.message.substring(0, 25) + '...' : commitInfo.message}
+          </a>
+        ) : (
+          <span>{commitInfo.message}</span>
+        )}
+      </div>
+      
       <div>React • Vite • Framer Motion • CSS Modules</div>
       <div>IP: {ip} | {new Date().toLocaleDateString()}</div>
     </footer>
