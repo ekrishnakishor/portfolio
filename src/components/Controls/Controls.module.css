@@ -95,3 +95,113 @@
   outline: none;
   resize: none;
 }
+
+/* --- NOTES MODAL STYLES --- */
+.notesContainer {
+  width: 90%;
+  max-width: 900px;
+  height: 80vh; /* Fixed height so it scrolls internally */
+  background-color: #0d1117;
+  border: 1px solid #30363d;
+  border-radius: 0.75rem;
+  overflow: hidden;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.7);
+  display: flex;
+  flex-direction: column;
+}
+
+.notesHeader {
+  background-color: #161b22;
+  padding: 1rem 1.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #30363d;
+}
+
+.notesTitle {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-weight: bold;
+  color: #c9d1d9;
+  font-size: 1.1rem;
+}
+
+.notesBody {
+  display: flex;
+  flex: 1;
+  overflow: hidden; /* Keeps child scrolls contained */
+}
+
+.notesSidebar {
+  width: 250px;
+  background-color: #161b22;
+  border-right: 1px solid #30363d;
+  padding: 1rem 0;
+  overflow-y: auto; /* Scrollbar for sidebar if needed */
+  display: flex;
+  flex-direction: column;
+}
+
+.tabBtn {
+  background: none;
+  border: none;
+  color: #8b949e;
+  padding: 0.75rem 1.5rem;
+  text-align: left;
+  font-size: 0.875rem;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: all 0.2s;
+}
+
+.tabBtn:hover {
+  color: #c9d1d9;
+  background-color: rgba(255, 255, 255, 0.05);
+}
+
+.activeTab {
+  color: #58a6ff;
+  background-color: rgba(88, 166, 255, 0.1);
+  border-left: 3px solid #58a6ff;
+  font-weight: bold;
+}
+
+.notesContentArea {
+  flex: 1;
+  padding: 2rem;
+  overflow-y: auto; /* THIS creates the internal scrollbar! */
+  background-color: #0d1117;
+}
+
+.contentTitle {
+  font-size: 1.5rem;
+  color: white;
+  margin-bottom: 1rem;
+  border-bottom: 1px solid #30363d;
+  padding-bottom: 0.5rem;
+}
+
+.contentText {
+  color: #c9d1d9;
+  line-height: 1.7;
+  font-size: 0.95rem;
+  margin-bottom: 1.5rem;
+  white-space: pre-wrap;
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 768px) {
+  .notesBody {
+    flex-direction: column;
+  }
+  .notesSidebar {
+    width: 100%;
+    height: 150px;
+    border-right: none;
+    border-bottom: 1px solid #30363d;
+  }
+}

@@ -1,14 +1,16 @@
 import React, { useState } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
-import { User, Download, X } from "lucide-react";
+import { User, Download, X, BookOpen } from "lucide-react"; // Added BookOpen
 import { motion, AnimatePresence } from "framer-motion";
 import emailjs from '@emailjs/browser';
+import NotesModal from "../Controls/NotesModal"; // Added NotesModal import
 import styles from "./Shared.module.css";
 
 const Navbar = ({ children, ip }) => {
   const navigate = useNavigate();
   const location = useLocation();
   const [showModal, setShowModal] = useState(false);
+  const [showNotes, setShowNotes] = useState(false); // Added state for Notes Modal
   const [formData, setFormData] = useState({ name: "", company: "" });
   const [isSending, setIsSending] = useState(false);
 
@@ -74,14 +76,26 @@ const Navbar = ({ children, ip }) => {
         {/* Center: Dynamic Content (Your Name or Tabs) */}
         <div className={styles.navCenter}>{children}</div>
 
-        {/* Right: Resume Button */}
-        <button
-          className={styles.downloadBtn}
-          onClick={() => setShowModal(true)}
-        >
-          <Download size={16} />
-          <span>RESUME</span>
-        </button>
+        {/* Right: Resume & Notes Buttons Container */}
+        <div style={{ display: 'flex', gap: '1rem', alignItems: 'center' }}>
+          
+          {/* THE NEW NOTES BUTTON */}
+          <button
+            onClick={() => setShowNotes(true)}
+            style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', background: 'transparent', color: '#c9d1d9', border: '1px solid #30363d', padding: '0.4rem 1rem', borderRadius: '4px', cursor: 'pointer', fontSize: '0.75rem', fontWeight: 'bold', letterSpacing: '0.1em' }}
+          >
+            <BookOpen size={16} />
+            <span>NOTES</span>
+          </button>
+
+          <button
+            className={styles.downloadBtn}
+            onClick={() => setShowModal(true)}
+          >
+            <Download size={16} />
+            <span>RESUME</span>
+          </button>
+        </div>
       </nav>
 
       {/* Download Modal */}
@@ -145,6 +159,11 @@ const Navbar = ({ children, ip }) => {
             </motion.div>
           </motion.div>
         )}
+      </AnimatePresence>
+
+      {/* The New Notes Modal */}
+      <AnimatePresence>
+        {showNotes && <NotesModal onClose={() => setShowNotes(false)} />}
       </AnimatePresence>
     </>
   );
