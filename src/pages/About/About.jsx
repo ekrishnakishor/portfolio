@@ -3,8 +3,8 @@ import { ChevronLeft, ChevronRight, ExternalLink, Info, X } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import Navbar from "../../components/Shared/Navbar";
 import Footer from "../../components/Shared/Footer";
-import XRayWrapper from "../../components/XRay/XRayWrapper"; // Added
-import XRayModal from "../../components/XRay/XRayModal"; // Added
+import XRayWrapper from "../../components/XRay/XRayWrapper";
+import XRayModal from "../../components/XRay/XRayModal";
 import sharedStyles from "../../components/Shared/Shared.module.css";
 import styles from "./About.module.css";
 
@@ -14,11 +14,29 @@ const About = () => {
   const [selectedProject, setSelectedProject] = useState(null);
   const [ip, setIp] = useState("Fetching...");
 
+  // DYNAMIC ITEMS PER PAGE STATE
+  const [itemsPerPage, setItemsPerPage] = useState(
+    window.innerWidth <= 768 ? 1 : 3,
+  );
+
+  // Fetch IP
   useEffect(() => {
     fetch("https://api.ipify.org?format=json")
       .then((res) => res.json())
       .then((data) => setIp(data.ip))
       .catch(() => setIp("Unavailable"));
+  }, []);
+
+  // Listen for window resize to toggle between 1 and 3 items
+  useEffect(() => {
+    const handleResize = () => {
+      const isMobile = window.innerWidth <= 768;
+      setItemsPerPage(isMobile ? 1 : 3);
+      setPageIndex(0); // Reset page to 0 when screen size changes to prevent empty pages
+    };
+
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
   }, []);
 
   const projects = {
@@ -145,9 +163,10 @@ const About = () => {
     },
   ];
 
-  const itemsPerPage = 3;
   const currentData = activeTab === "career" ? careerData : projects[activeTab];
   const totalPages = Math.ceil(currentData.length / itemsPerPage);
+
+  // Safe slice based on dynamic itemsPerPage
   const visibleItems = currentData.slice(
     pageIndex * itemsPerPage,
     (pageIndex + 1) * itemsPerPage,
@@ -169,7 +188,6 @@ const About = () => {
       </Navbar>
 
       <main className={styles.mainContent}>
-        {/* X-RAY: PILL SWITCHER */}
         <XRayWrapper
           title="Dynamic Tab Navigation"
           description="React state (activeTab) dictates which dataset to slice for the pagination grid. Conditionally applies active CSS modules for visual feedback."
@@ -194,17 +212,18 @@ const About = () => {
             </button>
             <button
               onClick={() => switchTab("career")}
-              className={activeTab === "career" ? styles.activePill : styles.pill}
+              className={
+                activeTab === "career" ? styles.activePill : styles.pill
+              }
             >
               CAREER
             </button>
           </div>
         </XRayWrapper>
 
-        {/* X-RAY: CONTENT GRID & PAGINATION */}
         <XRayWrapper
           title="Paginated Grid & AnimatePresence"
-          description="Framer Motion's AnimatePresence handles smooth enter/exit transitions when tab state or page index changes. Slice method manages the 3-item horizontal pagination."
+          description="Framer Motion's AnimatePresence handles smooth enter/exit transitions when tab state or page index changes. Slice method manages the horizontal pagination."
           snippet={`<AnimatePresence mode="wait">\n  <motion.div key={activeTab + pageIndex} ...>\n</AnimatePresence>`}
         >
           <div className={styles.contentWrapper}>
@@ -230,12 +249,17 @@ const About = () => {
                         <div key={item.id} className={styles.careerCard}>
                           <div className={styles.careerYear}>{item.year}</div>
                           <h3 className={styles.careerRole}>{item.role}</h3>
-                          <h4 className={styles.careerCompany}>{item.company}</h4>
+                          <h4 className={styles.careerCompany}>
+                            {item.company}
+                          </h4>
                           <p className={styles.careerDesc}>{item.desc}</p>
                         </div>
                       ))
                     : visibleItems.map((item) => (
-                        <div key={item.id} className={styles.projectCardWrapper}>
+                        <div
+                          key={item.id}
+                          className={styles.projectCardWrapper}
+                        >
                           <div className={styles.projectCard}>
                             <div className={styles.watermark}>{item.year}</div>
                             <div className={styles.cardImageWrapper}>
@@ -290,7 +314,6 @@ const About = () => {
 
       <Footer ip={ip} />
 
-      {/* Project Details Modal */}
       <AnimatePresence>
         {selectedProject && (
           <motion.div
@@ -334,9 +357,7 @@ const About = () => {
         )}
       </AnimatePresence>
 
-      {/* X-Ray Inspector Modal */}
       <XRayModal />
-
     </div>
   );
 };

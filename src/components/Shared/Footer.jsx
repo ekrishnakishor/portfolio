@@ -59,7 +59,7 @@ const Footer = ({ ip }) => {
         )}
       </div>
       
-      <div>React • Vite • Framer Motion • CSS Modules</div>
+      <div>ekrishnakishor@gmail.com</div>
       <div>IP: {ip} | {new Date().toLocaleDateString()}</div>
     </footer>
   );

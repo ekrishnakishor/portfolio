@@ -10,7 +10,7 @@
 .mainContent {
   flex: 1;
   display: flex;
-  flex-direction: column; /* Stacks the pills above the grid */
+  flex-direction: column;
   align-items: center;
   padding: 0 3rem;
   margin-bottom: 3rem;
@@ -101,7 +101,7 @@
   flex: 1;
   border-radius: 1rem;
   position: relative;
-  padding: 2px; /* Thickness of the glowing border */
+  padding: 2px;
   display: flex;
   flex-direction: column;
   overflow: hidden;
@@ -130,12 +130,8 @@
 }
 
 @keyframes rotateLight {
-  0% {
-    transform: rotate(0deg);
-  }
-  100% {
-    transform: rotate(360deg);
-  }
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
 }
 
 .projectCard {
@@ -143,7 +139,7 @@
   background-color: var(--bg-card);
   border-radius: calc(1rem - 2px);
   position: relative;
-  z-index: 1; /* Sits above the light gradient */
+  z-index: 1;
   display: flex;
   flex-direction: column;
   overflow: hidden;
@@ -347,4 +343,88 @@
 .codeText {
   font-family: monospace;
   color: #93c5fd !important;
+}
+
+/* =========================================
+   MOBILE RESPONSIVENESS
+   ========================================= */
+@media (max-width: 768px) {
+  .aboutContainer {
+    height: auto;
+    overflow-y: visible; /* Unlock scrolling */
+    overflow-x: hidden;
+  }
+
+  .mainContent {
+    padding: 1rem;
+    padding-bottom: 6rem;
+  }
+
+  .pillContainer {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.5rem;
+  }
+  
+  .pill, .activePill {
+    padding: 0.5rem 1rem;
+    font-size: 0.75rem;
+  }
+
+  /* --- FIXED CAROUSEL LAYOUT --- */
+  .contentWrapper {
+    position: relative; /* Allows arrows to absolute position to the edges */
+    display: flex;
+    justify-content: center;
+    width: 100%;
+  }
+
+  /* Pin arrows to the sides and center them vertically */
+  .navArrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 50;
+    padding: 0.5rem; /* Slightly smaller for mobile */
+    background-color: rgba(15, 23, 42, 0.9); /* Dark background so it stands out */
+    border: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  /* Left Arrow */
+  .contentWrapper > button:first-of-type {
+    left: 0;
+  }
+
+  /* Right Arrow */
+  .contentWrapper > button:last-of-type {
+    right: 0;
+  }
+
+  .gridContainer {
+    width: 100%;
+    height: auto;
+    padding: 0 3rem; /* Creates breathing room so the card doesn't touch the arrows */
+  }
+
+  .gridInner {
+    flex-direction: column; 
+    align-items: center; 
+    height: auto;
+  }
+
+  .projectCardWrapper, .careerCard {
+    width: 100%;
+    max-width: 400px; 
+    margin: 0 auto;
+  }
+
+  /* Make modal fit mobile screens */
+  .modalContent {
+    padding: 1.5rem;
+    margin: 1rem;
+  }
+  
+  .modalTitle {
+    font-size: 1.5rem;
+  }
 }

@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from "react";
-import { Terminal, Settings, Scan, Send } from "lucide-react"; // Added Send icon
+import { Terminal, Settings, Scan, Send } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import Navbar from "../../components/Shared/Navbar";
 import Footer from "../../components/Shared/Footer";
 import TerminalModal from "../../components/Controls/TerminalModal";
 import CssEditorModal from "../../components/Controls/CssEditorModal";
-import ContactModal from "../../components/Controls/ContactModal"; // Added Contact Modal
-import TechMarquee from "../../components/Shared/TechMarquee"; // Added Tech Marquee
+import ContactModal from "../../components/Controls/ContactModal";
+import TechMarquee from "../../components/Shared/TechMarquee";
 import { useXRay } from "../../context/XRayContext";
 import XRayWrapper from "../../components/XRay/XRayWrapper";
 import XRayModal from "../../components/XRay/XRayModal"; 
@@ -32,7 +32,6 @@ const Home = () => {
       </Navbar>
 
       <main className={styles.mainContent}>
-        {/* Un-wrapped this so it stays perfectly centered! */}
         <div className={styles.bgText}>REINVENT</div>
 
         <div className={styles.leftSection}>
@@ -56,26 +55,10 @@ const Home = () => {
                 for 30k+ students.
               </p>
 
-              {/* THE NEW HIRE ME BUTTON */}
+              {/* Cleaned up the Hire Me button! */}
               <button 
                 onClick={() => setActiveControl('contact')}
-                style={{ 
-                  marginTop: '2rem', 
-                  display: 'flex', 
-                  alignItems: 'center', 
-                  gap: '0.5rem', 
-                  background: 'white', 
-                  color: 'black', 
-                  padding: '0.75rem 2rem', 
-                  borderRadius: '99px', 
-                  fontWeight: 'bold', 
-                  fontSize: '0.875rem', 
-                  transition: 'transform 0.2s', 
-                  cursor: 'pointer',
-                  border: 'none'
-                }}
-                onMouseOver={(e) => e.currentTarget.style.transform = 'scale(1.05)'}
-                onMouseOut={(e) => e.currentTarget.style.transform = 'scale(1)'}
+                className={styles.hireBtn}
               >
                 <Send size={16} /> Hire Me
               </button>
@@ -134,25 +117,15 @@ const Home = () => {
         </div>
       </main>
 
-      {/* TECH MARQUEE PLACED JUST ABOVE FOOTER */}
       <TechMarquee />
-      
       <Footer ip={ip} />
 
       <AnimatePresence>
-        {activeControl === "terminal" && (
-          <TerminalModal onClose={() => setActiveControl(null)} />
-        )}
-        {activeControl === "css" && (
-          <CssEditorModal onClose={() => setActiveControl(null)} />
-        )}
-        {/* ADDED CONTACT MODAL */}
-        {activeControl === "contact" && (
-          <ContactModal onClose={() => setActiveControl(null)} />
-        )}
+        {activeControl === "terminal" && <TerminalModal onClose={() => setActiveControl(null)} />}
+        {activeControl === "css" && <CssEditorModal onClose={() => setActiveControl(null)} />}
+        {activeControl === "contact" && <ContactModal onClose={() => setActiveControl(null)} />}
       </AnimatePresence>
       
-      {/* X-Ray Modal remains at the top level */}
       <XRayModal />
       
     </div>

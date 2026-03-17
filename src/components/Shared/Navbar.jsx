@@ -1,20 +1,19 @@
 import React, { useState } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
-import { User, Download, X, BookOpen } from "lucide-react"; // Added BookOpen
+import { User, Download, X, BookOpen } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import emailjs from '@emailjs/browser';
-import NotesModal from "../Controls/NotesModal"; // Added NotesModal import
+import NotesModal from "../Controls/NotesModal";
 import styles from "./Shared.module.css";
 
 const Navbar = ({ children, ip }) => {
   const navigate = useNavigate();
   const location = useLocation();
   const [showModal, setShowModal] = useState(false);
-  const [showNotes, setShowNotes] = useState(false); // Added state for Notes Modal
+  const [showNotes, setShowNotes] = useState(false);
   const [formData, setFormData] = useState({ name: "", company: "" });
   const [isSending, setIsSending] = useState(false);
 
-  // Toggle navigation based on current path
   const handleAvatarClick = () => {
     if (location.pathname === "/") {
       navigate("/about");
@@ -25,7 +24,7 @@ const Navbar = ({ children, ip }) => {
 
   const triggerDownload = () => {
     const link = document.createElement("a");
-    link.href = "/resume.pdf"; // Ensure resume.pdf is in the public/ folder
+    link.href = "/resume.pdf";
     link.download = "Krishnakishor_Resume.pdf";
     link.click();
     alert("Download started. Thank you!");
@@ -42,7 +41,6 @@ const Navbar = ({ children, ip }) => {
       time: new Date().toLocaleString(),
     };
 
-    // Your actual EmailJS IDs
     const SERVICE_ID = 'service_2xtan57';
     const TEMPLATE_ID = 'template_uea63u9';
     const PUBLIC_KEY = 'niMes68dhAM6tWyNm';
@@ -54,7 +52,6 @@ const Navbar = ({ children, ip }) => {
       })
       .catch((error) => {
         console.error("Failed to send email:", error);
-        // Fallback: Let them download it even if the email gets blocked
         triggerDownload();
       })
       .finally(() => {
@@ -66,26 +63,25 @@ const Navbar = ({ children, ip }) => {
   return (
     <>
       <nav className={styles.navbar}>
-        {/* Left: Avatar acts as a toggle now */}
+        {/* Left: Avatar */}
         <div className={styles.navIcon} onClick={handleAvatarClick}>
           <div className={styles.avatarWrapper}>
             <User size={24} color="#fff" />
           </div>
         </div>
 
-        {/* Center: Dynamic Content (Your Name or Tabs) */}
+        {/* Center: Dynamic Content */}
         <div className={styles.navCenter}>{children}</div>
 
         {/* Right: Resume & Notes Buttons Container */}
-        <div style={{ display: 'flex', gap: '1rem', alignItems: 'center' }}>
+        <div className={styles.navRight}>
           
-          {/* THE NEW NOTES BUTTON */}
           <button
             onClick={() => setShowNotes(true)}
-            style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', background: 'transparent', color: '#c9d1d9', border: '1px solid #30363d', padding: '0.4rem 1rem', borderRadius: '4px', cursor: 'pointer', fontSize: '0.75rem', fontWeight: 'bold', letterSpacing: '0.1em' }}
+            className={styles.notesBtn}
           >
             <BookOpen size={16} />
-            <span>NOTES</span>
+            <span className={styles.btnText}>NOTES</span>
           </button>
 
           <button
@@ -93,7 +89,7 @@ const Navbar = ({ children, ip }) => {
             onClick={() => setShowModal(true)}
           >
             <Download size={16} />
-            <span>RESUME</span>
+            <span className={styles.btnText}>RESUME</span>
           </button>
         </div>
       </nav>

@@ -3,7 +3,7 @@
   display: flex;
   flex-direction: column;
   position: relative;
-  overflow: hidden;
+  overflow: hidden; /* Keeps it single-page on desktop */
   background-color: var(--bg-primary);
 }
 
@@ -13,6 +13,7 @@
   letter-spacing: 0.15em;
   text-transform: uppercase;
   color: var(--text-main);
+  white-space: nowrap;
 }
 
 .mainContent {
@@ -70,6 +71,25 @@
   max-width: 400px;
 }
 
+.hireBtn {
+  margin-top: 2rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: white;
+  color: black;
+  padding: 0.75rem 2rem;
+  border-radius: 99px;
+  font-weight: bold;
+  font-size: 0.875rem;
+  transition: transform 0.2s;
+  cursor: pointer;
+  border: none;
+}
+.hireBtn:hover {
+  transform: scale(1.05);
+}
+
 .centerSection {
   display: flex;
   justify-content: center;
@@ -90,15 +110,8 @@
 }
 
 @keyframes pulse {
-  0%,
-  100% {
-    opacity: 0.15;
-    transform: scale(0.95);
-  }
-  50% {
-    opacity: 0.3;
-    transform: scale(1.05);
-  }
+  0%, 100% { opacity: 0.15; transform: scale(0.95); }
+  50% { opacity: 0.3; transform: scale(1.05); }
 }
 
 .codeSymbolWrapper {
@@ -117,7 +130,6 @@
   font-family: monospace;
   color: #ffffff;
   letter-spacing: -0.05em;
-  /* Adds a neon glow effect to the text itself */
   text-shadow: 0 0 20px var(--accent-blue), 0 0 40px var(--accent-blue);
   user-select: none;
 }
@@ -156,4 +168,73 @@
 }
 .controlBtn:hover {
   color: var(--accent-blue);
+}
+
+/* =========================================
+   MOBILE RESPONSIVENESS
+   ========================================= */
+@media (max-width: 768px) {
+  .homeContainer {
+    /* CRITICAL FIX: Unlock the height and allow the native browser scrollbar */
+    height: auto;
+    overflow-y: visible; 
+    overflow-x: hidden;
+  }
+
+  .navName {
+    font-size: 1rem; /* Shrinks your name so it fits with the buttons */
+  }
+
+  .mainContent {
+    flex-direction: column; /* Stack sections vertically */
+    padding: 2rem 1.5rem;
+    padding-bottom: 8rem; /* Extra room so Marquee/Footer doesn't overlap controls */
+    gap: 3rem; /* Space between the text, symbol, and controls */
+    text-align: center; /* Center all text */
+    height: auto; /* Ensures flex container stretches to fit content */
+  }
+
+  .bgText {
+    font-size: 25vw;
+    top: 20%;
+  }
+
+  .leftSection {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: justify; /* Preserved your manual adjustment */
+  }
+
+  .description {
+    margin: 0 auto; /* Keeps the paragraph centered */
+  }
+
+  .hireBtn {
+    margin: 2rem auto 0 auto; /* Centers the button */
+    display: inline-flex; /* Preserved your manual adjustment */
+  }
+
+  .imageWrapper {
+    width: 12rem;
+    height: 12rem;
+  }
+  
+  .codeSymbol {
+    font-size: 5rem;
+  }
+
+  .rightSection {
+    justify-content: center; /* Centers the System Controls box */
+    width: 100%;
+  }
+
+  .systemControls {
+    width: 100%;
+    max-width: 300px;
+    align-items: center; /* Centers the buttons inside the box */
+  }
+  .centerSection {
+    display: none;
+  }
 }
