@@ -8,6 +8,17 @@ import XRayModal from "../../components/XRay/XRayModal";
 import sharedStyles from "../../components/Shared/Shared.module.css";
 import styles from "./About.module.css";
 
+// IMPORT YOUR LOCAL ASSET HERE
+import defaultProjectImg from "../../assets/images/works-greenways.webp";
+import district15 from "../../assets/images/works-district15.webp";
+import StudyBuddy from "../../assets/images/works-studybuddy.webp";
+import dhariya from "../../assets/images/works-dhariya.webp";
+import tds from "../../assets/images/works-tds.webp";
+import velociity from "../../assets/images/works-velociity.webp";
+import lms from "../../assets/images/works-lms.webp";
+import delivery from "../../assets/images/works-delivery.webp";
+import creative from "../../assets/images/works-creative.webp";
+
 const About = () => {
   const [activeTab, setActiveTab] = useState("freelance");
   const [pageIndex, setPageIndex] = useState(0);
@@ -46,8 +57,7 @@ const About = () => {
         title: "Greenway Cruise",
         year: "2023",
         tags: ["React", "Vite", "CSS Modules"],
-        image:
-          "https://images.unsplash.com/photo-1599839619722-39751411ea63?w=500&q=80",
+        image: defaultProjectImg, // Updated to local image
         live: "#",
         details: {
           tasks:
@@ -62,8 +72,7 @@ const About = () => {
         title: "District 15 Branding",
         year: "2023",
         tags: ["Figma", "UI/UX"],
-        image:
-          "https://images.unsplash.com/photo-1600880292203-757bb62b4baf?w=500&q=80",
+        image: district15, // Updated to local image
         live: "#",
         details: {
           tasks: "Logo design, UI mocks, packaging for an online store.",
@@ -74,59 +83,10 @@ const About = () => {
       },
       {
         id: 3,
-        title: "StudyBuddy AI",
-        year: "2022",
-        tags: ["React", "Node.js", "ChatGPT"],
-        image:
-          "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=500&q=80",
-        live: "https://www.velociitystudybuddy.com/",
-        details: {
-          tasks:
-            "Led frontend team and integrated AI learning workflows for IIT/JEE/NEET students.",
-          pipeline: "React -> AWS -> Vercel",
-          challenges:
-            "Creating seamless AI-assisted prompting inside a student dashboard.",
-        },
-      },
-      {
-        id: 4,
-        title: "Deccan Mallus Portal",
-        year: "2022",
-        tags: ["React", "CSS Grid"],
-        image:
-          "https://images.unsplash.com/photo-1540747913346-19e32dc3e97e?w=500&q=80",
-        live: "#",
-        details: {
-          tasks: "Logo blending Kerala & Hyderabad cultures, responsive UI.",
-          pipeline: "Design -> Code",
-          challenges: "Cultural representation in a minimalist sports design.",
-        },
-      },
-    ],
-    contributions: [
-      {
-        id: 5,
-        title: "LMS Platform Architecture",
-        year: "2022",
-        tags: ["Django", "React", "PostgreSQL"],
-        image:
-          "https://images.unsplash.com/photo-1501504905252-473c47e087f8?w=500&q=80",
-        live: "#",
-        details: {
-          tasks:
-            "Built robust platform currently supporting 2000+ active users.",
-          pipeline: "Fullstack deployment",
-          challenges:
-            "Database scaling and state management for thousands of concurrent students.",
-        },
-      },
-      {
-        id: 6,
         title: "Internal Delivery Tracker",
-        year: "2021",
-        tags: ["Google Workspace"],
-        image:
-          "https://images.unsplash.com/photo-1586528116311-ad8ed74514f6?w=500&q=80",
+        year: "2025",
+        tags: ["Logistics Service"],
+        image: delivery, // Updated to local image
         live: "#",
         details: {
           tasks:
@@ -136,30 +96,130 @@ const About = () => {
             "Making it extremely simple for delivery partners to upload photos on the go.",
         },
       },
+      {
+        id: 4,
+        title: "Business Website",
+        year: "2024",
+        tags: ["React", "Figma"],
+        image: dhariya, // Updated to local image
+        live: "#",
+        details: {
+          tasks:
+            "Business landing page for a marine compnay - following international standards, focusing on EU market",
+          pipeline: "Design -> Code",
+          challenges:
+            "Lack of design flexibility, and sticking towards simplicity",
+        },
+      },
+      {
+        id: 5,
+        title: "Business App for Amazon Services",
+        year: "2024",
+        tags: ["React", "Python", "Scrapping"],
+        image: tds, // Updated to local image
+        live: "#",
+        details: {
+          tasks:
+            "customised web app for amazon delivery services, US - automated app to fill the employee forms for government registration",
+          pipeline: "Design -> Code",
+          challenges:
+            "precision to map the data to official government forms, and end output - as government systems take things automatic",
+        },
+      },
+      {
+        id: 6,
+        title: "Web App for Velociity",
+        year: "2022",
+        tags: ["JavaScript", "Python", "LMS", "Automation", "Wix"],
+        image: velociity, // Updated to local image
+        live: "https://www.velociityeducationalsolutions.com",
+        details: {
+          tasks:
+            "Dedicated multipurpose website for an educational publication company, focusing to showcase their products, learning platform for students, guidance for teachers, and an AI assistance for both teachers and students. Online Examinations, Certifications, Guidance etc",
+          pipeline: "Design -> Develop -> Integration -> AI",
+          challenges:
+            "Heavy data, and traffic, forced to use wix platform to host as we found it more convinient and cost effective",
+        },
+      },
+      {
+        id: 7,
+        title: "Cover Designs",
+        year: "2021",
+        tags: [
+          "Design Services",
+          "Adobe Photoshop",
+          "Figma",
+          "Canva",
+          "Visual Studio",
+          "Paint",
+          "Nano Banana",
+        ],
+        image: creative, // Updated to local image
+        live: "#",
+        details: {
+          tasks: "High Quality designs for enterprises, books, wallposters etc",
+          pipeline: "Ideation -> Rough Draw -> Sketch -> Ps -> Figma -> Canva",
+          challenges:
+            "Creativity has no limits, understanding the color senses for each individual, reproducing the odd ones for cx satisfaction",
+        },
+      },
+    ],
+    contributions: [
+      {
+        id: 8,
+        title: "StudyBuddy AI",
+        year: "2022",
+        tags: ["React", "Node.js", "ChatGPT"],
+        image: StudyBuddy, // Updated to local image
+        live: "https://www.velociitystudybuddy.com/",
+        details: {
+          tasks:
+            "Led frontend team and integrated AI learning workflows for IIT/JEE/NEET students.",
+          pipeline: "React -> AWS -> Vercel",
+          challenges:
+            "Creating seamless AI-assisted prompting inside a student dashboard.",
+        },
+      },
+
+      {
+        id: 9,
+        title: "LMS Platform Architecture",
+        year: "2022",
+        tags: ["Django", "React", "PostgreSQL", "Android", "Online exams"],
+        image: lms, // Updated to local image
+        live: "https://www.velociityeducationalsolutions.com",
+        details: {
+          tasks:
+            "Learning platform for students, focusing on competitive learning methods, subject wise question and answers, video classes, mcq's and many more",
+          pipeline: "Fullstack deployment",
+          challenges:
+            "Database scaling and state management for thousands of concurrent students.",
+        },
+      },
     ],
   };
 
   const careerData = [
     {
       id: 1,
-      role: "Web Developer",
+      role: "Head of IT & Media",
       company: "Velociity Foundation",
-      year: "2022 - Present",
-      desc: "Developed enhanced LMS platform for 2000+ active users. Designed modular UI components.",
+      year: "2022 - 2026",
+      desc: "Provided technical support for an LMS platform serving 2000+ users, efficiently resolving usability and system-related issues. Guided users in navigating platform features and troubleshooting access problems to ensure a seamless experience. Collaborated closely with development teams to identify and fix bugs, contributing to continuous improvements in overall user experience.",
     },
     {
       id: 2,
       role: "Stakeholder",
       company: "CYC IndieTech",
       year: "2023 - 2024",
-      desc: "Managed business operations and digital product development. Planned web-based solutions.",
+      desc: "Collaborated closely with clients to understand their requirements and address technical concerns effectively. Supported the delivery of web solutions by managing communication, tracking issues, and ensuring smooth coordination throughout the project lifecycle.",
     },
     {
       id: 3,
-      role: "Operations Head",
+      role: "Web Developer & Placements Head US",
       company: "Techis India",
       year: "2021 - 2022",
-      desc: "Trained 250+ international professionals, improved placement by 34%. Designed technical curriculum.",
+      desc: "Delivered technical training to 250+ international users across the US and Japan, providing real-time support and resolving queries with clarity and efficiency. Simplified complex technical concepts to enhance user understanding and maintain high satisfaction levels. Served as the primary point of contact for learners, driving improved engagement and course completion rates, while also managing operations, scheduling, and cross-team coordination.",
     },
   ];
 
