@@ -181,7 +181,7 @@ const About = () => {
         },
       },
     ],
-    Projects: [
+    personal: [
       {
         id: 9,
         title: "Logistics WebApp",
@@ -294,12 +294,12 @@ const About = () => {
               FREELANCE
             </button>
             <button
-              onClick={() => switchTab("contributions")}
+              onClick={() => switchTab("personal")}
               className={
-                activeTab === "contributions" ? styles.activePill : styles.pill
+                activeTab === "personal" ? styles.activePill : styles.pill
               }
             >
-              CONTRIBUTIONS
+              PERSONAL
             </button>
             <button
               onClick={() => switchTab("career")}
