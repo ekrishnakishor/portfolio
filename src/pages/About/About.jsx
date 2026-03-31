@@ -84,7 +84,7 @@ const About = () => {
         },
       },
       {
-        id: 4,
+        id: 3,
         title: "Business Website",
         year: "2024",
         tags: ["React", "Figma"],
@@ -99,7 +99,7 @@ const About = () => {
         },
       },
       {
-        id: 5,
+        id: 4,
         title: "Business App for Amazon Services",
         year: "2024",
         tags: ["React", "Python", "Scrapping"],
@@ -114,7 +114,7 @@ const About = () => {
         },
       },
       {
-        id: 6,
+        id: 5,
         title: "Web App for Velociity",
         year: "2022",
         tags: ["JavaScript", "Python", "LMS", "Automation", "Wix"],
@@ -129,7 +129,7 @@ const About = () => {
         },
       },
       {
-        id: 7,
+        id: 6,
         title: "Cover Designs",
         year: "2021",
         tags: [
@@ -151,7 +151,7 @@ const About = () => {
         },
       },
       {
-        id: 8,
+        id: 7,
         title: "StudyBuddy AI",
         year: "2022",
         tags: ["React", "Node.js", "ChatGPT"],
@@ -166,7 +166,7 @@ const About = () => {
         },
       },
       {
-        id: 9,
+        id: 8,
         title: "LMS Platform Architecture",
         year: "2022",
         tags: ["Django", "React", "PostgreSQL", "Android", "Online exams"],
@@ -183,7 +183,7 @@ const About = () => {
     ],
     Projects: [
       {
-        id: 3,
+        id: 9,
         title: "Logistics WebApp",
         year: "2025",
         tags: ["Logistics Service"],
@@ -198,7 +198,7 @@ const About = () => {
         },
       },
       {
-        id: 3,
+        id: 10,
         title: "Geo Chat",
         year: "2025",
         tags: ["Chatting App", "Nearby Services", "Global Groups"],
@@ -213,7 +213,7 @@ const About = () => {
         },
       },
       {
-        id: 3,
+        id: 11,
         title: "Play n Learn",
         year: "2026",
         tags: ["Education", "Online Games", "Conceptualization"],
