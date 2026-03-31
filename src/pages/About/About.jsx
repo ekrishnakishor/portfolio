@@ -18,6 +18,8 @@ import velociity from "../../assets/images/works-velociity.webp";
 import lms from "../../assets/images/works-lms.webp";
 import delivery from "../../assets/images/works-delivery.webp";
 import creative from "../../assets/images/works-creative.webp";
+import chat from "../../assets/images/works-chat.webp";
+import game from "../../assets/images/works-game.webp";
 
 const About = () => {
   const [activeTab, setActiveTab] = useState("freelance");
@@ -82,27 +84,12 @@ const About = () => {
         },
       },
       {
-        id: 3,
-        title: "Internal Delivery Tracker",
-        year: "2025",
-        tags: ["Logistics Service"],
-        image: delivery, // Updated to local image
-        live: "#",
-        details: {
-          tasks:
-            "Built internal proof-of-delivery system for courier business.",
-          pipeline: "Forms -> Sheets -> Internal Dashboard",
-          challenges:
-            "Making it extremely simple for delivery partners to upload photos on the go.",
-        },
-      },
-      {
         id: 4,
         title: "Business Website",
         year: "2024",
         tags: ["React", "Figma"],
         image: dhariya, // Updated to local image
-        live: "#",
+        live: "https://www.dhariyamarines.com",
         details: {
           tasks:
             "Business landing page for a marine compnay - following international standards, focusing on EU market",
@@ -163,8 +150,6 @@ const About = () => {
             "Creativity has no limits, understanding the color senses for each individual, reproducing the odd ones for cx satisfaction",
         },
       },
-    ],
-    contributions: [
       {
         id: 8,
         title: "StudyBuddy AI",
@@ -180,7 +165,6 @@ const About = () => {
             "Creating seamless AI-assisted prompting inside a student dashboard.",
         },
       },
-
       {
         id: 9,
         title: "LMS Platform Architecture",
@@ -194,6 +178,53 @@ const About = () => {
           pipeline: "Fullstack deployment",
           challenges:
             "Database scaling and state management for thousands of concurrent students.",
+        },
+      },
+    ],
+    Projects: [
+      {
+        id: 3,
+        title: "Logistics WebApp",
+        year: "2025",
+        tags: ["Logistics Service"],
+        image: delivery, // Updated to local image
+        live: "#",
+        details: {
+          tasks:
+            "Built internal proof-of-delivery system for courier business.",
+          pipeline: "Forms -> Sheets -> Internal Dashboard",
+          challenges:
+            "Making it extremely simple for delivery partners to upload photos on the go.",
+        },
+      },
+      {
+        id: 3,
+        title: "Geo Chat",
+        year: "2025",
+        tags: ["Chatting App", "Nearby Services", "Global Groups"],
+        image: chat, // Updated to local image
+        live: "https://geochat-five.vercel.app/",
+        details: {
+          tasks:
+            "Idea to create a random chat app to connect people nearby with location services and people globally, this is just a prototype, and the main goal was to learn sockets, their performance etc",
+          pipeline: "Ideation -> Sockets -> Geo Tags -> Web Connections",
+          challenges:
+            "Geo Tag was a bit difficult to understand at first. Location based random chat app idea was to make people know each other limiting the starting trouble for the introverts",
+        },
+      },
+      {
+        id: 3,
+        title: "Play n Learn",
+        year: "2026",
+        tags: ["Education", "Online Games", "Conceptualization"],
+        image: game, // Updated to local image
+        live: "https://learnnstudy.netlify.app/leaderboard",
+        details: {
+          tasks:
+            "The idea was simple - create a platform where people can come, play some games, and improve their brain activities, maninly if they are bored of their studies, day to day tasks etc. Planning to add more and more games, challenges and many more",
+          pipeline: "Ideation -> Sockets -> Geo Tags -> Web Connections",
+          challenges:
+            "Making the leaderboard was a bit heavy, having multiple games, and multiple logic for xp, made the backend looks heavy to perform, as i am creating this prototype to understand the impact, it wont be difficult to pull things off, but yeah, i believe the systems might crash anytime soon. The chess game was so mess, still trying to figure out the scrolling behaviours.",
         },
       },
     ],
