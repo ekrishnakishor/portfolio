@@ -20,9 +20,10 @@ import delivery from "../../assets/images/works-delivery.webp";
 import creative from "../../assets/images/works-creative.webp";
 import chat from "../../assets/images/works-chat.webp";
 import game from "../../assets/images/works-game.webp";
+import alongside from "../../assets/images/works-alongside.webp";
 
 const About = () => {
-  const [activeTab, setActiveTab] = useState("freelance");
+  const [activeTab, setActiveTab] = useState("works");
   const [pageIndex, setPageIndex] = useState(0);
   const [selectedProject, setSelectedProject] = useState(null);
   const [ip, setIp] = useState("Fetching...");
@@ -53,7 +54,7 @@ const About = () => {
   }, []);
 
   const projects = {
-    freelance: [
+    works: [
       {
         id: 1,
         title: "Greenway Cruise",
@@ -227,6 +228,21 @@ const About = () => {
             "Making the leaderboard was a bit heavy, having multiple games, and multiple logic for xp, made the backend looks heavy to perform, as i am creating this prototype to understand the impact, it wont be difficult to pull things off, but yeah, i believe the systems might crash anytime soon. The chess game was so mess, still trying to figure out the scrolling behaviours.",
         },
       },
+      {
+        id: 12,
+        title: "Alongside",
+        year: "2026",
+        tags: ["AI Companion", "React", "Prompt Engineering", "Gemini API"],
+        image: alongside,
+        live: "https://alongside-flax.vercel.app/",
+        details: {
+          tasks:
+            "The goal was to build an empathetic spiritual companion that models the love of Jesus. Instead of a robotic search engine that just throws Bible verses at a user, the app acts as a grounded friend. It listens to their struggles, sits with them in their pain, and naturally weaves in comforting scripture and prayer through a clean, login-free chat interface framed by a calming blue-to-gold gradient.",
+          pipeline: "Vite & React Setup -> CSS Modules & UI -> Gemini API Integration -> Advanced Prompt Engineering",
+          challenges:
+            "The biggest challenge was breaking the AI out of its natural tendency to be a 'therapy bot'. It took extensive system prompt engineering to stop it from using predictable 'Sympathy + Verse + Prayer' formulas or artificial terms of endearment. Getting the AI to 'sit in the mess' with the user and respond with the brevity and raw empathy of a human text message was tricky. We also had to navigate Gemini API model versioning (404 errors) and rate limits to ensure the backend remained 100% free and stable.",
+        },
+      },
     ],
   };
 
@@ -286,12 +302,12 @@ const About = () => {
         >
           <div className={styles.pillContainer}>
             <button
-              onClick={() => switchTab("freelance")}
+              onClick={() => switchTab("works")}
               className={
-                activeTab === "freelance" ? styles.activePill : styles.pill
+                activeTab === "works" ? styles.activePill : styles.pill
               }
             >
-              FREELANCE
+              WORKS
             </button>
             <button
               onClick={() => switchTab("personal")}

@@ -120,7 +120,7 @@
     display: none;
   }
   .navName {
-    font-size: 1rem;
+    display: none;
   }
   .avatarWrapper {
     width: 2.5rem;
